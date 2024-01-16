@@ -22,38 +22,22 @@ public class Program
 
     public static string GetPercentCorrect(double numberCorrectAnswers, double numberOfQuestions)
     {
-        return (numberCorrectAnswers / numberOfQuestions * 100) + "%";
+        return Math.Round((numberCorrectAnswers / numberOfQuestions * 100),2) + "%";
     }
 
     public static string UserCharacterResult(double numberCorrectAnswers, double numberOfQuestions)
     {
         double result = (numberCorrectAnswers / numberOfQuestions);
-        
-        if( result > .99)
+
+        return result switch
         {
-            return "The Grandfather";
-        }
-        else if (result > .84 && result < .99)
-        {
-            return "Inigo Montoya";
-        }
-        else if (result > .7 && result < .85)
-        {
-            return "Princess Buttercup";
-        }
-        else if (result > .56 && result < .7)
-        {
-            return "Count Rugen";
-        }
-        else if (result > .39 && result < .57)
-        {
-            return "Fezzik";
-        }
-        else
-        {
-            return "Vizzini";
-        }
-            
+            > .99 => "The Grandfather",
+            > .84 and < .99 => "Inigo Montoya",
+            > .7 and < .85 => "Princess Buttercup",
+            > .56 and < .7 => "Count Rugen",
+            > .39 and < .57 => "Fezzik",
+            _ => "Vizzini"
+        };
     }
 
     public static bool AskQuestion(Question question)
