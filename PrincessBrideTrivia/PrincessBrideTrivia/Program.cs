@@ -17,11 +17,18 @@ public class Program
             }
         }
         Console.WriteLine("You got " + GetPercentCorrect(numberCorrect, questions.Length) + " correct");
+        Console.WriteLine("Your character match is: " + UserCharacterResult(numberCorrect, questions.Length) + "!");
     }
 
     public static string GetPercentCorrect(double numberCorrectAnswers, double numberOfQuestions)
     {
         return (numberCorrectAnswers / numberOfQuestions * 100) + "%";
+    }
+
+    public static string UserCharacterResult(double numberCorrectAnswers, double numberOfQuestions)
+    {
+        return null;
+
     }
 
     public static bool AskQuestion(Question question)

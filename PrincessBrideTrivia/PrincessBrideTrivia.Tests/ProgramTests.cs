@@ -70,6 +70,22 @@ public class ProgramTests
         // Assert
         Assert.AreEqual(expectedString, percentage);
     }
+    [TestMethod]
+    [DataRow(1, 1, "The Grandfather")]
+    [DataRow(9, 10, "Inigo Montoya")]
+    [DataRow(6, 10, "Count Rugen")]
+    [DataRow(1, 10, "Vizzini")]
+    public void UserCharacterResult_ReturnsExpectedCharacter(int numberOfCorrectGuesses, 
+        int numberOfQuestions, string expectedString)
+    {
+        // Arrange
+
+        // Act
+        string percentage = Program.UserCharacterResult(numberOfCorrectGuesses, numberOfQuestions);
+
+        // Assert
+        Assert.AreEqual(expectedString, percentage);
+    }
 
 
     private static void GenerateQuestionsFile(string filePath, int numberOfQuestions)
