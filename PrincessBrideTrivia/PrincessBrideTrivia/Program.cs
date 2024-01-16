@@ -17,7 +17,7 @@ public class Program
             }
         }
         Console.WriteLine("You got " + GetPercentCorrect(numberCorrect, questions.Length) + " correct");
-        Console.WriteLine("Your character match is: " + UserCharacterResult(numberCorrect, questions.Length) + "!");
+        Console.WriteLine("Your character match is: " + UserCharacterResult(numberCorrect,questions.Length) + "!");
     }
 
     public static string GetPercentCorrect(double numberCorrectAnswers, double numberOfQuestions)
@@ -27,8 +27,33 @@ public class Program
 
     public static string UserCharacterResult(double numberCorrectAnswers, double numberOfQuestions)
     {
-        return null;
-
+        double result = (numberCorrectAnswers / numberOfQuestions);
+        
+        if( result > .99)
+        {
+            return "The Grandfather";
+        }
+        else if (result > .84 && result < .99)
+        {
+            return "Inigo Montoya";
+        }
+        else if (result > .7 && result < .85)
+        {
+            return "Princess Buttercup";
+        }
+        else if (result > .56 && result < .7)
+        {
+            return "Count Rugen";
+        }
+        else if (result > .39 && result < .57)
+        {
+            return "Fezzik";
+        }
+        else
+        {
+            return "Vizzini";
+        }
+            
     }
 
     public static bool AskQuestion(Question question)

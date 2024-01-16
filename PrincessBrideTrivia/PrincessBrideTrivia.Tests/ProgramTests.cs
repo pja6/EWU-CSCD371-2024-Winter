@@ -72,9 +72,11 @@ public class ProgramTests
     }
     [TestMethod]
     [DataRow(1, 1, "The Grandfather")]
-    [DataRow(9, 10, "Inigo Montoya")]
-    [DataRow(6, 10, "Count Rugen")]
-    [DataRow(1, 10, "Vizzini")]
+    [DataRow(6, 7, "Inigo Montoya")]
+    [DataRow(5, 7, "Princess Buttercup")]
+    [DataRow(4, 7, "Count Rugen")]
+    [DataRow(3, 7, "Fezzik")]
+    [DataRow(2, 7, "Vizzini")]
     public void UserCharacterResult_ReturnsExpectedCharacter(int numberOfCorrectGuesses, 
         int numberOfQuestions, string expectedString)
     {
