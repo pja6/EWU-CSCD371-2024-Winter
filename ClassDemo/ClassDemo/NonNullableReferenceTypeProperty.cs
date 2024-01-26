@@ -8,5 +8,6 @@ namespace ClassDemo
 {
     internal class NonNullableReferenceTypeProperty
     {
+        public string Text { get; set; }
     }
 }
