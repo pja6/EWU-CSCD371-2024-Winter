@@ -115,7 +115,7 @@ public class ProgramTests
     [Fact]
     public void JoinStringByDelimiter_PassInNull_ThrowsArgumentNullException()
     {
-        Assert.Throws<ArgumentNullException>(() => Program.JoinStringByDelimiter(null!));
+        Assert.Throws<ArgumentNullException>(() => ClassDemo.StringEx.JoinStringByDelimiter(null!));
     }
 
     [Theory]
@@ -123,10 +123,32 @@ public class ProgramTests
     [InlineData(new string?[] { "Montoya" }, "Montoya")]
     [InlineData(new string?[] { "" }, "")]
     [InlineData(new string?[] { null }, "")]
-    [InlineData(new string?[] {"Inigo, Montoya"}, "Inigo Montoya")]
-    public void JoinStringByDelimiter_OneElementNotNull_ReturnsElement(string?[] actual, string expected)
+    [InlineData(new string?[] { "Inigo", "Montoya" }, "Inigo Montoya")]
+    public void JoinStringByDelimiter_Elements_ReturnsElement(string?[] actual, string expected)
     {
-        Assert.Equal(expected, Program.JoinStringByDelimiter(actual));
+        Assert.Equal(expected, Program.JoinStringByDelimiterOriginal(actual));
+    }
+
+    [Fact]
+    public void JoinStringByDelimiter_ParamsArray_ReturnsElement()
+    {
+        Assert.Equal("Inigo Montoya",
+        Program.JoinStringByDelimiterOriginal(["Inigo", "Montoya"]));
+    }
+
+    [Fact]
+    public void JoinStringByDelimiter_ParamsArrayStatic_ReturnsElement()
+    {
+        Assert.Equal("Inigo Montoya",
+        StringEx.JoinStringByDelimiter("Inigo", "Montoya"));
+    }
+
+
+    [Fact]
+    public void JoinStringByDelimiter_ExtensionMethod_ReturnsElement()
+    {
+        Assert.Equal("Inigo Montoya",
+            "Inigo".JoinStringByDelimiter("Montoya"));
     }
     #endregion
 }

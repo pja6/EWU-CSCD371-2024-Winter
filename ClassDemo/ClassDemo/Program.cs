@@ -1,4 +1,6 @@
-﻿namespace ClassDemo;
+﻿using System.Text;
+
+namespace ClassDemo;
 
 public class Program
 {
@@ -7,16 +9,27 @@ public class Program
     /// </summary>
     /// <param name="inputStrings">An array of strings that are...</param>
     /// <returns></returns>
-    public static string JoinStringByDelimiter(string?[] inputStrings)
+    public static string JoinStringByDelimiterOriginal(string?[] inputStrings)
     {
         ArgumentNullException.ThrowIfNull(inputStrings);
-        return inputStrings[0] ?? string.Empty;
+        StringBuilder result = new();
+        foreach (string? inputString in inputStrings)
+        {
+            if (inputString != null)
+            {
+                if (result.Length > 0)
+                {
+                    result.Append(' ');
+                }
+                result.Append(inputString);
+            }
+        }
+        return result.ToString();
     }
-
 
     public string GetFullName(string firstName, string lastName, string? middleName = null)
     {
-        return JoinStringByDelimiter([firstName, lastName, middleName]);
+        return StringEx.JoinStringByDelimiter(firstName, lastName, middleName);
         //return firstName + $"{(middleName != null ? ' ' + middleName + ' ' : ' ')}" + lastName;
     }
 
@@ -32,7 +45,7 @@ public class Program
             throw new InvalidOperationException("Your login is not valid");
         }
     }
-  
+
     public bool TryLogin(string username, string password)
     {
         if (password == "goodpassword")
@@ -56,4 +69,5 @@ public class Program
             return false;
         }
     }
+    
 }
