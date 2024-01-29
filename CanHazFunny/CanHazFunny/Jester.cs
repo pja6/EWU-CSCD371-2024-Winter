@@ -12,7 +12,7 @@ namespace CanHazFunny
         private readonly IJokeService _jokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
         private readonly IJokeServiceOutput _outputInterface = outputInterface ?? throw new ArgumentNullException(nameof(outputInterface));
 
-        public string TellJoke()
+        public void TellJoke()
         {
             string theJoke="";
             do
@@ -20,10 +20,12 @@ namespace CanHazFunny
                 theJoke += jokeService.GetJoke();
 
             } while (theJoke.Contains("Chuck Norris"));
+            
+            
+            
+            outputInterface.Write(theJoke);
 
-           
-
-            return theJoke;
+            
         }
 
 
