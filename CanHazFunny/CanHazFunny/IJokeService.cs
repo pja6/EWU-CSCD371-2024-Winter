@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 
-namespace CanHazFunny
-{
+namespace CanHazFunny;
+
     public interface IJokeService
     {
         string GetJoke();
 
     }
-}
+
