@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 
 namespace CanHazFunny
 {
-    public class Jester 
+   
+    public class Jester(IJokeService jokeService, IJokeServiceOutput outputInterface)
     {
-        private readonly IJokeService _jokeService;
-        private readonly IOutputInterface _outputInterface;
+        private readonly IJokeService _jokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
+        private readonly IJokeServiceOutput _outputInterface = outputInterface ?? throw new ArgumentNullException(nameof(outputInterface));
 
-        public Jester(IJokeService jokeService, IOutputInterface outputInterface)
+        public string TellJoke()
         {
-            _jokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
-            _outputInterface = outputInterface ?? throw new ArgumentNullException(nameof(outputInterface));
+            return _jokeService.getJoke();
         }
-    }
+
+
+
+
+    }//end of class
+
+ 
 }

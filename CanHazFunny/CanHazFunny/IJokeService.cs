@@ -7,7 +7,7 @@ using System.Net.Http;
 
 namespace CanHazFunny
 {
-    internal interface IJokeService
+    public interface IJokeService
     {
         string GetJoke();
 
