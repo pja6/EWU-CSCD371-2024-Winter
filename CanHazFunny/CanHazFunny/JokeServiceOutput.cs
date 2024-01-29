@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
 
 namespace CanHazFunny
 {
-    internal interface IJokeService
+    public class JokeServiceOutput : IJokeServiceOutput
     {
-        string GetJoke();
-
+        public void Write(string joke)
+        {
+            Console.WriteLine(joke);
+        }
     }
 }
