@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CanHazFunny
-{
+namespace CanHazFunny;
+
     public class JokeServiceOutput : IJokeServiceOutput
     {
         public void Write(string joke)
@@ -13,4 +13,4 @@ namespace CanHazFunny
             Console.WriteLine(joke);
         }
     }
-}
+

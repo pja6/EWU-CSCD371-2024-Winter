@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace CanHazFunny
-{ 
+namespace CanHazFunny;
+
     public class JokeService : IJokeService
     {
     
@@ -16,4 +16,3 @@ namespace CanHazFunny
 
 
     }
-}

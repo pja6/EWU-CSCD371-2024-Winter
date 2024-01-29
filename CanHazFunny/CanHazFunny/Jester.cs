@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CanHazFunny
-{
+namespace CanHazFunny;
+
    
     public class Jester(IJokeService jokeService, IJokeServiceOutput outputInterface)
     {
@@ -34,4 +34,4 @@ namespace CanHazFunny
     }//end of class
 
  
-}
+
