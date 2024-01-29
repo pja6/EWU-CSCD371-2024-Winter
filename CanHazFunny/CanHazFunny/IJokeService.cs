@@ -8,5 +8,7 @@ namespace CanHazFunny
 {
     internal interface IJokeService
     {
+        class Jester { };
+
     }
 }
