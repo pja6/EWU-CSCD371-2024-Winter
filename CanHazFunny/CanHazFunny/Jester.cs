@@ -14,8 +14,8 @@ namespace CanHazFunny;
 
         public void TellJoke()
         {
-            string theJoke="";
-            do
+        string theJoke;
+        do
             {
                 theJoke = jokeService.GetJoke();
 

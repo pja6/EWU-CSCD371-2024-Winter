@@ -1,10 +1,32 @@
 using Xunit;
 using Moq;
+using System;
 
 namespace CanHazFunny.Tests;
 
 public class JesterTests
 {
+    [Fact]
+    public void TellJoke_JokeServiceIsNull_ThrowException()
+    {  
+        //Arrange
+        IJokeServiceOutput jokeOutput = new JokeServiceOutput();
+
+        // Act and Assert
+        Assert.Throws<ArgumentNullException>(() => new Jester(null!, jokeOutput));
+
+    }
+
+    [Fact]
+    public void TellJoke_JokeOutputIsNull_ThrowException()
+    {
+        //Arrange
+        IJokeService jokeService = new JokeService();
+
+        //Act and Assert
+        Assert.Throws<ArgumentNullException>(() => new Jester(jokeService, null!));
+    }
+
     [Fact]
     public void TellJoke_ReturnsJoke_Success()
     {
