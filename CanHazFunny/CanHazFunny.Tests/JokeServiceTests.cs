@@ -2,8 +2,8 @@
 using System.Net.Http;
 using Xunit;
 
-namespace CanHazFunny.Tests
-{
+namespace CanHazFunny.Tests;
+
     public class JokeServiceTests
     {
 
@@ -21,4 +21,4 @@ namespace CanHazFunny.Tests
             Assert.NotEmpty( result );
         }
     }
-}
+
