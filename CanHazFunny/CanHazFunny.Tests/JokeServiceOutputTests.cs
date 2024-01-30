@@ -1,15 +1,30 @@
-﻿using Xunit;
+﻿using System;
+using System.IO;
+using Xunit;
 
-namespace CanHazFunny.Tests
+
+namespace CanHazFunny.Tests;
+
+public class JokeServiceOutputTests
 {
-    public class JokeServiceOutputTests
+    [Fact]
+    public void Write_Should_Write_Joke_To_Console()
     {
-        [Theory]
-        [MemberData("Knock Knock")]
-        public void Write_JokeOutputToConsole_Success(string expectedJoke)
+        // Arrange
+        JokeServiceOutput jokeServiceOutput = new();
+
+        // Redirect Console.WriteLine output to a StringWriter
+        using (StringWriter output = new())
         {
+            Console.SetOut(output);
 
+            // Act
+            jokeServiceOutput.Write("This is a joke");
 
+            // Assert
+            Assert.Equal("This is a joke", output.ToString().Trim());
         }
     }
+
+
 }
