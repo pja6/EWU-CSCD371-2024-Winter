@@ -7,7 +7,7 @@ namespace CanHazFunny.Tests;
 public class JesterTests
 {
     [Fact]
-    public void TellJoke_JokeServiceIsNull_ThrowException()
+    public void Jester_JokeServiceIsNull_ThrowException()
     {  
         //Arrange
         IJokeServiceOutput jokeOutput = new JokeServiceOutput();
@@ -18,7 +18,7 @@ public class JesterTests
     }
 
     [Fact]
-    public void TellJoke_JokeOutputIsNull_ThrowException()
+    public void Jester_JokeOutputIsNull_ThrowException()
     {
         //Arrange
         IJokeService jokeService = new JokeService();
