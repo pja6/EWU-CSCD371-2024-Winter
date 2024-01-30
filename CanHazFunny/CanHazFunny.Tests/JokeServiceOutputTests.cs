@@ -8,7 +8,7 @@ namespace CanHazFunny.Tests;
 public class JokeServiceOutputTests
 {
     [Fact]
-    public void Write_Should_Write_Joke_To_Console()
+    public void Write_WriteToConsole_Success()
     {
         // Arrange
         JokeServiceOutput jokeServiceOutput = new();
