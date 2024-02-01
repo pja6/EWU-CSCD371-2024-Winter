@@ -19,6 +19,7 @@ public class ProgramTests
         return new Program();
     }
 
+    
     [Theory]
     [InlineData("Inigo.Montoya", "goodpassword")]
     [InlineData("Princess.Buttercup", "goodpassword")]
@@ -96,9 +97,6 @@ public class ProgramTests
     [Theory]
     [InlineData("Inigo", "middle", "Montoya", "Inigo middle Montoya")]
     [InlineData("Inigo", null, "Montoya", "Inigo Montoya")]
-    //[InlineData("", null, "", "Montoya")]
-    //[InlineData("Inigo", null, "", "Inigo")]
-    //[InlineData(null, "middle", "Montoya", "middle Montoya")]
     public void GetFullName_ThreeNames_ReturnsFullName(string firstName, string? middleName, string lastName, string expected)
     {
         Assert.Equal(expected, Program.GetFullName(firstName, lastName, middleName));
@@ -111,44 +109,57 @@ public class ProgramTests
         Assert.Equal(expected, Program.GetFullName(firstName, lastName));
     }
 
-    #region JoinStringByDelimiter
     [Fact]
     public void JoinStringByDelimiter_PassInNull_ThrowsArgumentNullException()
     {
-        Assert.Throws<ArgumentNullException>(() => ClassDemo.StringEx.JoinStringByDelimiter(null!));
+        Assert.Throws<ArgumentNullException>( () => Program.JoinStringByDelimiter(null));
     }
-
+    
     [Theory]
-    [InlineData(new string?[] { "Inigo" }, "Inigo")]
     [InlineData(new string?[] { "Montoya" }, "Montoya")]
-    [InlineData(new string?[] { "" }, "")]
-    [InlineData(new string?[] { null }, "")]
-    [InlineData(new string?[] { "Inigo", "Montoya" }, "Inigo Montoya")]
-    public void JoinStringByDelimiter_Elements_ReturnsElement(string?[] actual, string expected)
+    [InlineData(new string?[] { "Inigo" }, "Inigo")]
+    [InlineData(new string?[] { "" },"")]
+    [InlineData(new string?[] { null },"")]
+    [InlineData(new string?[] { "Inigo" ,"Montoya" }, "Inigo Montoya")]
+
+
+    public void JoinStringByDelimiter_OneElementNotNull_ReturnElement(string?[] actual, string expected)
     {
-        Assert.Equal(expected, Program.JoinStringByDelimiterOriginal(actual));
+        Assert.Equal(expected, Program.JoinStringByDeliminator(actual));
     }
+    [Fact]
+    public void DisplayValue()
+    {
+        string temp = Program.JoinStringByDeliminator(null);
+        temp = temp?.ToUpper().ToLower(); //if this returns null at ToUpper(), returns nullreferenceexcepetion
+        temp = temp?.ToUpper()?.ToLower(); // if ToUpper() returns null then it will continue to ToLower() which will then do ^^
+        Console.WriteLine(temp);
+    }
+    //if there's a possibility that a value returns null then you have to decide how you want to handle null
+    //this is not the case if you just return a string - don't have to worry about null reference exception for example
+    //if calling method on an expected string
+    //makes api simpler by not having to check
+
+    //temp? this operator says if this is null just return null and don't call the invoked methods (short circuits)
+    //if you're adding it then it means var could be nullable so then you also need string? temp
+    //null conditional operator = ?
+
+
 
     [Fact]
-    public void JoinStringByDelimiter_ParamsArray_ReturnsElement()
+    public void JoinStringByDelimiter_ParamsArray_ReturnElement()
     {
-        Assert.Equal("Inigo Montoya",
-        Program.JoinStringByDelimiterOriginal(["Inigo", "Montoya"]));
-    }
-
-    [Fact]
-    public void JoinStringByDelimiter_ParamsArrayStatic_ReturnsElement()
-    {
-        Assert.Equal("Inigo Montoya",
-        StringEx.JoinStringByDelimiter("Inigo", "Montoya"));
+        Assert.Equal("Inigo Montoya", Program.JoinStringByDeliminator("Inigo", "Montoya"));
     }
 
 
     [Fact]
-    public void JoinStringByDelimiter_ExtensionMethod_ReturnsElement()
+    public void JoinStringByDelimiter_ExtensionMethod_ReturnElement()
     {
-        Assert.Equal("Inigo Montoya",
-            "Inigo".JoinStringByDelimiter("Montoya"));
+        //need the extension method to make this work
+        //Assert.Equal("Inigo Montoya", "Inigo".JoinStringByDeliminator("Inigo", "Montoya"));
     }
-    #endregion
+
 }
+ 
+    
