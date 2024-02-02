@@ -28,7 +28,7 @@ public class JesterTests
     }
 
     [Fact]
-    public void TellJoke_ReturnsJoke_Success()
+    public void TellJoke_ReturnsFirstJoke_Success()
     {
         // Arrange
         Mock<IJokeService> jokeServiceMock = new();
@@ -46,7 +46,7 @@ public class JesterTests
 
         // Assert
         outputInterfaceMock.Verify(o => o.Write("Why did the chicken cross the road? To get to the other side!"), Times.Once);
-        //Assert.Equal("Normal joke", outputInterfaceMock.Invocations[0].Arguments[0] as string);
+        Assert.NotEqual("This is another joke", outputInterfaceMock.Invocations[0].Arguments[0] as string);
 
     }
 
@@ -60,8 +60,9 @@ public class JesterTests
         // Return a joke containing "Chuck Norris" for the first call,
         // and a regular joke for subsequent calls to GetJoke()
         jokeServiceMock.SetupSequence(s => s.GetJoke())
-            .Returns("Why did the chicken cross the road? To get to the other side!")
-            .Returns("Chuck Norris can divide by zero.");
+            .Returns("Chuck Norris can divide by zero.")
+            .Returns("Chuck Norris joke 2")
+            .Returns("Why did the chicken cross the road? To get to the other side!");
 
         Jester jester = new(jokeServiceMock.Object, outputInterfaceMock.Object);
 
@@ -70,7 +71,14 @@ public class JesterTests
 
         // Assert
         outputInterfaceMock.Verify(o => o.Write("Why did the chicken cross the road? To get to the other side!"), Times.Once);
+        Assert.Equal("Why did the chicken cross the road? To get to the other side!", outputInterfaceMock.Invocations[0].Arguments[0] as string);
+        //setupsequence - checks all of the returns
+        //setup will just check the same one over and over - check if you get anything other than chuck norris
+
     }
+
+
+    //moq test
 
 
 }
